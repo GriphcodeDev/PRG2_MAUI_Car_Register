@@ -113,10 +113,9 @@ namespace PRG_MAUI_Car_Register
         }
 
 
-        //TODO Modifiera overriden på ToString() så att allt visas som önskat i UIs listBox
         public override string ToString()
         {
-            return this.registrationNumber + "\t" + this.vehicleType + "\t" + this.manufacturer + "\t" + this.model;
+            return this.registrationNumber + "\t" + this.vehicleType + "\t" + this.manufacturer + "\t" + this.model + "\t" + this.yearModel.ToString();
         }
     }
 }
