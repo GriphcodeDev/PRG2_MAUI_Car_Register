@@ -51,17 +51,24 @@ namespace PRG_MAUI_Car_Register
         public string Model
         {
             get { return model; }
-            set { this.model = value; } 
+            set 
+            {
+                Validatename(value, "Modell");
+                model = value.Trim();
+            
+            } 
         }
 
-        //TODO Modell ska valideras, sparas i objektet och visas i UI
         public string Manufacturer
         {
             get { return manufacturer; }
-            set { this.manufacturer = value; }
+            set 
+            {
+                Validatename(value, "Märke");
+                manufacturer = value.Trim();
+            }
         }
 
-        //TODO Lägg till möjligheten att spara realistisk årsmodell, validera, spara och visa i objektet och visas i UI. Tips: Regex.IsMatch()
         public int YearModel
         {
             get { return yearModel; }
@@ -69,7 +76,7 @@ namespace PRG_MAUI_Car_Register
 
                 if (!Regex.IsMatch(value.ToString(), @"^[1-2][0-9]{3}\z"))
                 {
-                    throw new ArgumentException("Årsmodellen måste vara ett fyrsiffrigt tal."); ")
+                    throw new ArgumentException("Årsmodellen måste vara ett fyrsiffrigt tal."); 
                 }
 
                 if (value < 1895 || value > DateTime.Now.Year) {
@@ -79,6 +86,29 @@ namespace PRG_MAUI_Car_Register
 
                 yearModel = value;
             
+            }
+        }
+
+        private static void Validatename(string value, string fieldName)
+        {
+            if(String.IsNullOrWhiteSpace(value))
+            {
+                throw new ArgumentException($"{fieldName} måste skrivas in");
+            }
+
+            string trimmed = value.Trim();
+            bool hasLetterOrDigit = false;
+
+            foreach (char c in trimmed)
+            {
+                if (char.IsLetter(c) || char.IsDigit(c))
+                {
+                    hasLetterOrDigit = true;
+                }
+                else if (c != ' ' && c != '-')
+                {
+                    throw new ArgumentException($"{fieldName} får inte innehålla specialtecken");
+                }
             }
         }
 
