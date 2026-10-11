@@ -42,14 +42,12 @@ namespace PRG_MAUI_Car_Register
             }
         }
 
-        // Fordonstyp tas in från dropdown-menyn, och behöver därför inte valideras
         public Type VehicleType
         {
             get { return vehicleType; }
             set { this.vehicleType = value; }
         }
 
-        //TODO Tillverkare ska valideras, sparas i objektet och visas i UI
         public string Model
         {
             get { return model; }
@@ -69,10 +67,14 @@ namespace PRG_MAUI_Car_Register
             get { return yearModel; }
             set {
 
+                if (!Regex.IsMatch(value.ToString(), @"^[1-2][0-9]{3}\z"))
+                {
+                    throw new ArgumentException("Årsmodellen måste vara ett fyrsiffrigt tal."); ")
+                }
+
                 if (value < 1895 || value > DateTime.Now.Year) {
 
                     throw new ArgumentException($"Årsmodellen måste vara mellan året 1895 och {DateTime.Now.Year}");
-                    
                 }
 
                 yearModel = value;
