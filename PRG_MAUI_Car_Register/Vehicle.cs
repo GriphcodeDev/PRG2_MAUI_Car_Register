@@ -1,4 +1,6 @@
-﻿namespace PRG_MAUI_Car_Register
+﻿using System.Text.RegularExpressions;
+
+namespace PRG_MAUI_Car_Register
 {
     class Vehicle
     {
@@ -6,50 +8,34 @@
         public enum Type { Bil, MC, Lastbil };
         private Type vehicleType;
         private string registrationNumber = string.Empty;
+        
         private string manufacturer = string.Empty;
         private string model = string.Empty;
+        private int yearModel;
+
+        public String[] CarList = new string[] { "Volvo", "BWM", "Audi", "Ferrari", "Porsche" };
 
         // Konstruktor (en metod med samma namn som klassen, som returnerar ett objekt)
         public Vehicle(Type vehicleType) // en konstruktor kan, men måste inte, ta parametrar
         {
             this.vehicleType = vehicleType;
+
         }
 
-        // Get-Set för att hålla variablerna privata, och för att validera inkommande värden från UI (user interface, användargränssnittet)
         public string RegistrationNumber
         {
             get { return registrationNumber; }
 
             set
             {
-                if (!String.IsNullOrWhiteSpace(value))
+                if (String.IsNullOrWhiteSpace(value))
                 {
-                    if (value.Length == 6)
-                    {
-                        for (int i = 0; i < 3; i++)
-                        {
-                            if (!char.IsLetter(value[i]))
-                                throw new ArgumentException("Inkorrekt registreringsnummer: De första tre tecknen måste vara bokstäver.");
-                        }
-
-                        for (int i = 3; i < 6; i++)
-                        {
-                            if (i < 5)
-                            {
-                                if (!char.IsDigit(value[i]))
-                                    throw new ArgumentException("Inkorrekt registreringsnummer: Det fjärde och femte tecknet måste vara siffror.");
-                            }
-                            else
-                            {
-                                if (!char.IsDigit(value[i]) && !char.IsLetter(value[i]))
-                                    throw new ArgumentException("Inkorrekt registreringsnummer: Det sjätte tecknet måste vara en siffra eller en bokstav.");
-                            }
-                        }
-                    }
+                    throw new ArgumentException("Ett registreringsnummer måste skrivas in");
                 }
-                else
+                 
+                if (!Regex.IsMatch(value, @"^[A-Za-z]{3}[0-9]{2}[A-Za-z0-9]$"))
                 {
-                    throw new ArgumentException("Ett registreringsnummer måste bestå av exakt 6 tecken, med tre bokstäver följt av två siffror och en siffra eller bokstav.");
+                    throw new ArgumentException("Ett registreringsnummer måste bestå av tre bokstäver följt av två siffror och en siffra eller bokstav.");
                 }
 
                 registrationNumber = value.ToUpper();
@@ -67,7 +53,7 @@
         public string Model
         {
             get { return model; }
-            set { this.model = value; }
+            set { this.model = value; } 
         }
 
         //TODO Modell ska valideras, sparas i objektet och visas i UI
@@ -78,6 +64,21 @@
         }
 
         //TODO Lägg till möjligheten att spara realistisk årsmodell, validera, spara och visa i objektet och visas i UI. Tips: Regex.IsMatch()
+        public int YearModel
+        {
+            get { return yearModel; }
+            set {
+
+                if (value < 1895 || value > DateTime.Now.Year) {
+
+                    throw new ArgumentException($"Årsmodellen måste vara mellan året 1895 och {DateTime.Now.Year}");
+                    
+                }
+
+                yearModel = value;
+            
+            }
+        }
 
 
         //TODO Modifiera overriden på ToString() så att allt visas som önskat i UIs listBox

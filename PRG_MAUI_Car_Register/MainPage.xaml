@@ -5,12 +5,10 @@
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="10">
-            <Image Source="car.jpg" Aspect="AspectFit" HeightRequest="150" Margin="0,0,0,20"/>
-            
-            <HorizontalStackLayout Spacing="20" HorizontalOptions="StartAndExpand">
+         <HorizontalStackLayout Spacing="20" HorizontalOptions="StartAndExpand">
                 <Entry x:Name="entryRegistrationNumber" Placeholder="Registreringsnummer" />
                 <Label Text="Välj typ:" VerticalOptions="Center"/>
-                <Picker x:Name="pickerType" TextColor="DarkRed">
+                <Picker x:Name="pickerType" TextColor="Blue">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>Bil</x:String>
@@ -22,7 +20,8 @@
             </HorizontalStackLayout>
             <Entry x:Name="entryManufacturer" Placeholder="Tillverkare" />
             <Entry x:Name="entryModel" Placeholder="Modell" />
-            <Button x:Name="buttonRegister" Text="Registrera" Clicked="OnRegisterClicked" Margin="0,0,0,20" BackgroundColor="DarkRed"/>
+            <Entry x:Name="entryYear" Placeholder="Årsmodell" />
+            <Button x:Name="buttonRegister" Text="Registrera" Clicked="OnRegisterClicked" Margin="0,0,0,20" BackgroundColor="Blue"/>
 
             <Label Text="Kategori:" FontAttributes="Bold" />
             <HorizontalStackLayout HorizontalOptions="Center" Margin="0,0,0,20" Spacing="10" >
@@ -36,9 +35,9 @@
 
             <HorizontalStackLayout HorizontalOptions="FillAndExpand" Spacing="20">
                 <Entry x:Name="entrySearchRegistrationNumber" HorizontalOptions="FillAndExpand" Placeholder="Sök på registreringsnummer"></Entry>
-                <Button x:Name="buttonSearch" Text="Sök" HorizontalOptions="End" BackgroundColor="DarkRed" TextColor="White" Clicked="OnSearchClicked"/>
+                <Button x:Name="buttonSearch" Text="Sök" HorizontalOptions="End" BackgroundColor="Blue" TextColor="White" Clicked="OnSearchClicked"/>
             </HorizontalStackLayout>
-            <Label x:Name="labelSearchResult" Text="Sökresultat visas här..." TextColor="DarkRed" Margin="0,20,0,0"/>
+            <Label x:Name="labelSearchResult" Text="Sökresultat visas här..." TextColor="Blue" Margin="0,20,0,0"/>
         </VerticalStackLayout>
     </ScrollView>
 
