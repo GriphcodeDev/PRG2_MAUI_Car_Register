@@ -15,8 +15,8 @@ namespace PRG_MAUI_Car_Register
 
         public String[] CarList = new string[] { "Volvo", "BWM", "Audi", "Ferrari", "Porsche" };
 
-        // Konstruktor (en metod med samma namn som klassen, som returnerar ett objekt)
-        public Vehicle(Type vehicleType) // en konstruktor kan, men måste inte, ta parametrar
+      
+        public Vehicle(Type vehicleType)
         {
             this.vehicleType = vehicleType;
 
