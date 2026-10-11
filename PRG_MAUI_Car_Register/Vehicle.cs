@@ -2,8 +2,6 @@
 {
     class Vehicle
     {
-        // Medlemsvariabler
-        public enum Type { Bil, MC, Lastbil };
         private Type vehicleType;
         private string registrationNumber = string.Empty;
         private string manufacturer = string.Empty;
