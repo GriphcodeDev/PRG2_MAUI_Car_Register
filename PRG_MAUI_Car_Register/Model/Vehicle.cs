@@ -1,11 +1,13 @@
-﻿namespace PRG_MAUI_Car_Register
+﻿namespace PRG_MAUI_Car_Register.Model
 {
-    class Vehicle
+    public abstract class Vehicle
     {
         private Type vehicleType;
         private string registrationNumber = string.Empty;
         private string manufacturer = string.Empty;
         private string model = string.Empty;
+
+       
 
         // Konstruktor (en metod med samma namn som klassen, som returnerar ett objekt)
         public Vehicle(Type vehicleType) // en konstruktor kan, men måste inte, ta parametrar
