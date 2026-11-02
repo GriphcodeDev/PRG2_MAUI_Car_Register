@@ -2,20 +2,19 @@
 {
     public abstract class Vehicle
     {
-        private Type vehicleType;
         private string registrationNumber = string.Empty;
         private string manufacturer = string.Empty;
         private string model = string.Empty;
 
+ 
        
-
-        // Konstruktor (en metod med samma namn som klassen, som returnerar ett objekt)
-        public Vehicle(Type vehicleType) // en konstruktor kan, men måste inte, ta parametrar
+        public Vehicle() 
         {
-            this.vehicleType = vehicleType;
+           
         }
 
-        // Get-Set för att hålla variablerna privata, och för att validera inkommande värden från UI (user interface, användargränssnittet)
+ 
+
         public string RegistrationNumber
         {
             get { return registrationNumber; }
@@ -56,34 +55,21 @@
             }
         }
 
-        // Fordonstyp tas in från dropdown-menyn, och behöver därför inte valideras
-        public Type VehicleType
-        {
-            get { return vehicleType; }
-            set { this.vehicleType = value; }
-        }
-
-        //TODO Tillverkare ska valideras, sparas i objektet och visas i UI
         public string Model
         {
             get { return model; }
             set { this.model = value; }
         }
 
-        //TODO Modell ska valideras, sparas i objektet och visas i UI
         public string Manufacturer
         {
             get { return manufacturer; }
             set { this.manufacturer = value; }
         }
 
-        //TODO Lägg till möjligheten att spara realistisk årsmodell, validera, spara och visa i objektet och visas i UI. Tips: Regex.IsMatch()
-
-
-        //TODO Modifiera overriden på ToString() så att allt visas som önskat i UIs listBox
         public override string ToString()
         {
-            return this.registrationNumber + "\t" + this.vehicleType + "\t" + this.manufacturer + "\t" + this.model;
+            return this.registrationNumber + "\t" + "\t" + this.manufacturer + "\t" + this.model;
         }
     }
 }
